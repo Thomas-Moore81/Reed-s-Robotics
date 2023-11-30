@@ -7,29 +7,30 @@
     <title>Reed's Robotics</title>
 </head>
 <body>
-    <header>
-        <h1>Welcome to Reed's Robotics</h1>
-    </header>
+    <center>
+        <header>
+            <h1>Welcome to Reed's Robotics</h1>
+        </header>
 
-    <section id="landing">
-        <div class="login-container">
-            <h2>Login</h2>
-            <form action="purchase_page.html" method="post">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
+        <section id="landing">
+            <div class="login-container">
+                <h2>Login</h2>
+                <form action="purchase_page.html" method="post">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
 
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
 
-                <button type="button" onclick="redirectUser()">Login</button>
-            </form>
-        </div>
-    </section>
+                    <button type="button" onclick="redirectUser()">Login</button>
+                </form>
+            </div>
+        </section>
 
-    <footer>
-        <p>&copy; 2023 Reed's Robotics</p>
-    </footer>
-
+        <footer>
+            <p>&copy; 2023 Reed's Robotics</p>
+        </footer>
+    </center>
     <script>
         function redirectUser() {
             var email = document.getElementById("email").value;
