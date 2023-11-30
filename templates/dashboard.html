@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styles.css">
+    <title>Reed's Robotics - Customer Dashboard</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Your Customer Dashboard</h1>
+    </header>
+
+    <section id="dashboard">
+        <div class="options-container">
+            <h2>Dashboard Options</h2>
+            <button onclick="redirectToPurchase()">Make a Purchase</button>
+            <button onclick="redirectToOrders()">View Orders</button>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Reed's Robotics</p>
+    </footer>
+
+    <script>
+        function redirectToPurchase() {
+            window.location.href = "purchase_page.html";
+        }
+
+        function redirectToOrders() {
+            window.location.href = "orders.html";
+        }
+    </script>
+</body>
+</html>
