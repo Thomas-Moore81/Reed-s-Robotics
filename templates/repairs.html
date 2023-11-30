@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styles.css">
+    <title>Reed's Robotics - Repairs</title>
+</head>
+<body>
+    <header>
+        <h1>Robot Repairs</h1>
+    </header>
+
+    <section id="repair-form">
+        <h2>Submit Repair Information</h2>
+        <form action="process_repair.php" method="post">
+            <label for="robot_id">Robot ID:</label>
+            <input type="number" id="robot_id" name="robot_id" required>
+
+            <label for="condition">Condition:</label>
+            <input type="text" id="condition" name="condition" required>
+
+            <label for="repair_location">Repair Location:</label>
+            <input type="text" id="repair_location" name="repair_location" required>
+
+            <label for="technician">Technician:</label>
+            <input type="text" id="technician" name="technician" required>
+
+            <label for="part_id">Part ID:</label>
+            <input type="number" id="part_id" name="part_id" required>
+
+            <button type="submit">Submit Repair</button>
+        </form>
+    </section>
+
+    <section id="past-repairs">
+        <h2>Past Repairs</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Ticket ID</th>
+                    <th>Robot ID</th>
+                    <th>Condition</th>
+                    <th>Repair Location</th>
+                    <th>Technician</th>
+                    <th>Part ID</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Reed's Robotics</p>
+    </footer>
+</body>
+</html>
