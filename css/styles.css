@@ -41,3 +41,15 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+button{
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    border: black solid 2px;
+}
+
+button:hover{
+    color: black;
+    background-color: white;
+}
