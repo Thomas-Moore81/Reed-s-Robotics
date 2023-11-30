@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Reed's Robotics - Purchase Page</title>
+</head>
+<body>
+    <header>
+        <h1>Purchase Robot Parts</h1>
+    </header>
+
+    <section id="purchase">
+        <h2>Build Your Robot</h2>
+        <form action="order_confirmation.html" method="post">
+            <label for="head">Head:</label>
+            <select id="head" name="head" required>
+                <option value="head1">Head Model 1</option>
+                <option value="head2">Head Model 2</option>
+
+            </select>
+
+            <label for="torso">Torso:</label>
+            <select id="torso" name="torso" required>
+                <option value="torso1">Torso Model 1</option>
+                <option value="torso2">Torso Model 2</option>
+
+            </select>
+
+            <label for="arms">Arms:</label>
+            <select id="arms" name="arms" required>
+                <option value="arms1">Arms Model 1</option>
+                <option value="arms2">Arms Model 2</option>
+
+            </select>
+
+            <label for="legs">Legs:</label>
+            <select id="legs" name="legs" required>
+                <option value="legs1">Legs Model 1</option>
+                <option value="legs2">Legs Model 2</option>
+
+            </select>
+
+            <button type="submit">Purchase</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Reed's Robotics</p>
+    </footer>
+</body>
+</html>

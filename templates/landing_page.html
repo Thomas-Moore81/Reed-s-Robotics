@@ -14,7 +14,7 @@
     <section id="landing">
         <div class="login-container">
             <h2>Login</h2>
-            <form action="create_robot.html" method="post">
+            <form action="purchase_page.html" method="post" onsubmit="return redirectUser()">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required>
 
@@ -39,7 +39,7 @@
             // Check if email and password are not empty
             if (email && password) {
                 // Redirect to the purchasing page 
-                window.location.href = "purchasing_page.html";
+                window.location.href = "purchase_page.html";
             } else {
                 alert("Please enter both email and password.");
             }
