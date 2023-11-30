@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styles.css">
+    <title>Reed's Robotics</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Reed's Robotics</h1>
+    </header>
+
+    <section id="landing">
+        <div class="login-container">
+            <h2>Login</h2>
+            <form action="create_robot.html" method="post">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Reed's Robotics</p>
+    </footer>
+
+    <script>
+        function redirectUser() {
+            // Get the email and password values
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+
+            // Check if email and password are not empty
+            if (email && password) {
+                // Redirect to the purchasing page 
+                window.location.href = "purchasing_page.html";
+            } else {
+                alert("Please enter both email and password.");
+            }
+        }
+    </script>
+</body>
+</html>
