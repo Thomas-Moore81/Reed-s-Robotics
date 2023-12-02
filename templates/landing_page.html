@@ -14,14 +14,14 @@
     <section id="landing">
         <div class="login-container">
             <h2>Login</h2>
-            <form action="purchase_page.html" method="post">
+            <form action="{{ url_for('dashboard') }}" method="post">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required>
 
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required>
 
-                <button type="button" onclick="redirectUser()">Login</button>
+                <button type="submit">Login</button>
             </form>
         </div>
     </section>
