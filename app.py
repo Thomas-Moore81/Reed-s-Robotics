@@ -16,6 +16,7 @@ def index():
 
     #connection._execute_query("INSERT INTO customers (customer_id, customer_name, customer_address, customer_email) VALUES(1, 'lane', '123 sesame st', 'lane@mail.com')")
     #connection.commit()
+    #test line for commit
     
     db_Info = connection.get_server_info()
     print("Connected to MySQL Server version ", db_Info)
