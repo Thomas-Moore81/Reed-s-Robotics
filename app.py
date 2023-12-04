@@ -5,19 +5,24 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-
+    db_config = {
+    'host': 'dbdev.cs.kent.edu',
+    'user': 'lsimps14',
+    'password': 'of67DKid',
+    'database': 'lsimps14',
+    }
 
     connection = mysql.connector.connect(**db_config)
 
-    connection._execute_query("INSERT INTO customers (customer_id, customer_name, customer_address, customer_email) VALUES(1, 'lane', '123 sesame st', 'lane@mail.com')")
-    connection.commit()
+    #connection._execute_query("INSERT INTO customers (customer_id, customer_name, customer_address, customer_email) VALUES(1, 'lane', '123 sesame st', 'lane@mail.com')")
+    #connection.commit()
     
     db_Info = connection.get_server_info()
     print("Connected to MySQL Server version ", db_Info)
     connection.close()
     return render_template('landing_page.html')
 
-@app.route('/dashboard', methods=['GET', 'POST'])
+@app.route('/dashboard.html', methods=['GET', 'POST'])
 def dashboard():
     if request.method == 'POST':
         email = request.form.get('email')
@@ -54,7 +59,13 @@ if __name__ == '__main__':
 
 # app = Flask(__name__)
 
-
+# # replace these with the database stuff for whoever is doing the database
+# db_config = {
+#     'host': 'dbdev.cs.kent.edu',
+#     'user': 'lsimps14',
+#     'password': 'of67DKid',
+#     'database': 'lsimps14'
+# }
 
 # def fetch_past_repairs():
 #     past_repairs = []
