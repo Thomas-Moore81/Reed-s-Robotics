@@ -5,12 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    db_config = {
-    'host': 'dbdev.cs.kent.edu',
-    'user': 'lsimps14',
-    'password': 'of67DKid',
-    'database': 'lsimps14',
-    }
+
 
     connection = mysql.connector.connect(**db_config)
 
@@ -61,13 +56,7 @@ app.run(host='localhost', port=5006)
 
 # app = Flask(__name__)
 
-# # replace these with the database stuff for whoever is doing the database
-# db_config = {
-#     'host': 'dbdev.cs.kent.edu',
-#     'user': 'lsimps14',
-#     'password': 'of67DKid',
-#     'database': 'lsimps14'
-# }
+
 
 # def fetch_past_repairs():
 #     past_repairs = []
