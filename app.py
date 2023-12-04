@@ -52,9 +52,7 @@ def repairs():
     return render_template('repairs.html', past_repairs=past_repairs)
 
 if __name__ == '__main__':
-    app.run(debug=True)
-
-app.run(host='localhost', port=5006)
+    app.run(debug=True, host='localhost', port=5006)
 
 # from flask import Flask, render_template, request, redirect, url_for
 # import mysql.connector
