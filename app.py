@@ -10,7 +10,7 @@ def index():
     'user': 'lsimps14',
     'password': 'of67DKid',
     'database': 'lsimps14',
-    }
+    }  
 
     connection = mysql.connector.connect(**db_config)
 
