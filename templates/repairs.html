@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/css/styles.css">
     <title>Reed's Robotics - Repairs</title>
 </head>
+
 <body>
     <header>
         <h1>Robot Repairs</h1>
@@ -13,9 +15,21 @@
 
     <section id="repair-form">
         <h2>Submit Repair Information</h2>
-        <form action="/submit_repair" method="post">
-            <!-- Your existing form fields go here -->
-            <!-- ... -->
+        <form action="{{ url_for('update_repair', robot_id='', condition='', repair_location='', technician='', part_id='', ticket_id='') }}" method="post">
+            <label for="robot_id">Robot ID:</label>
+            <input type="text" name="robot_id" id="robot_id" required>
+
+            <label for="condition">Condition:</label>
+            <input type="text" name="condition" id="condition" required>
+
+            <label for="repair_location">Repair Location:</label>
+            <input type="text" name="repair_location" id="repair_location" required>
+
+            <label for="technician">Technician:</label>
+            <input type="text" name="technician" id="technician" required>
+
+            <label for="part_id">Part ID:</label>
+            <input type="text" name="part_id" id="part_id" required>
 
             <button type="submit">Submit Repair</button>
         </form>
@@ -37,10 +51,9 @@
             <tbody>
                 {% for repair in past_repairs %}
                 <tr>
-                    <!--bootstrap for instant updates from flas's link to the database-->>
                     <td>{{ repair.ticket_id }}</td>
                     <td>{{ repair.robot_id }}</td>
-                    <td>{{ repair.condition }}</td>
+                    <td>{{ repair.condition_type }}</td>
                     <td>{{ repair.repair_location }}</td>
                     <td>{{ repair.technician }}</td>
                     <td>{{ repair.part_id }}</td>
@@ -54,4 +67,5 @@
         <p>&copy; 2023 Reed's Robotics</p>
     </footer>
 </body>
+
 </html>
