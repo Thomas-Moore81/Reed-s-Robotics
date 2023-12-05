@@ -56,6 +56,31 @@ def submit_customer():
     except Exception as e:
         return f"Error submitting customer information: {str(e)}"
 
+# @app.route('/delete_customer', methods=['POST'])
+# def delete_customer():
+#     customer_id = request.form.get('customer_id')
+#     customer_name = request.form.get('customer_name')
+#     customer_address = request.form.get('customer_address')
+#     customer_email = request.form.get('customer_email')
+#     order_id = request.form.get('order_id')
+
+#     query = """
+#     DELETE FROM customers
+#     WHERE customer_id = %s
+#       AND customer_name = %s
+#       AND customer_address = %s
+#       AND customer_email = %s
+#       AND order_id = %s
+#     """
+#     data = (customer_id, customer_name, customer_address, customer_email, order_id)
+
+#     try:
+#         execute_query(query, data)
+#         print(f"Customer deleted successfully.")
+#         return redirect(url_for('customer_form'))
+#     except Exception as e:
+#         print(f"Error deleting customer: {str(e)}")
+
 @app.route('/orders')
 def orders():
     return render_template('orders.html')
