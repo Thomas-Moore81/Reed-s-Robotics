@@ -15,7 +15,7 @@
 
     <section id="repair-form">
         <h2>Submit Repair Information</h2>
-        <form action="{{ url_for('update_repair', robot_id='', condition='', repair_location='', technician='', part_id='', ticket_id='') }}" method="post">
+        <form action="{{ url_for('update_repair') }}" method="post">
             <label for="robot_id">Robot ID:</label>
             <input type="text" name="robot_id" id="robot_id" required>
 
@@ -30,6 +30,9 @@
 
             <label for="part_id">Part ID:</label>
             <input type="text" name="part_id" id="part_id" required>
+
+            <label for="ticket_id">Ticket ID:</label>
+            <input type="text" name="ticket_id" id="ticket_id" required>
 
             <button type="submit">Submit Repair</button>
         </form>

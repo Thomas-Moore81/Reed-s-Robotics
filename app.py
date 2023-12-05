@@ -53,14 +53,47 @@ def update_repair():
     part_id = request.form.get('part_id')
     ticket_id = request.form.get('ticket_id')
 
-    query = """
-        UPDATE Repairs
-        SET robot_id = %s, condition_type = %s, repair_location = %s, technician = %s, part_id = %s
-        WHERE ticket_id = %s
-    """
-    data = (robot_id, condition, repair_location, technician, part_id, ticket_id)
+    # Check if a record with the same robot_id and ticket_id already exists
+    check_query = "SELECT * FROM Repairs WHERE robot_id = %s AND ticket_id = %s"
+    check_data = (robot_id, ticket_id)
 
-    return execute_query(query, data)
+    connection = mysql.connector.connect(**db_config)
+    cursor = connection.cursor(dictionary=True)
+    cursor.execute(check_query, check_data)
+    existing_record = cursor.fetchone()
+    connection.close()
+
+    if existing_record:
+        # If the condition is different, update the existing record
+        if existing_record['condition_type'] != condition:
+            update_query = """
+                UPDATE Repairs
+                SET condition_type = %s, repair_location = %s, technician = %s, part_id = %s
+                WHERE robot_id = %s AND ticket_id = %s
+            """
+            update_data = (condition, repair_location, technician, part_id, robot_id, ticket_id)
+
+            try:
+                result = execute_query(update_query, update_data)
+                return result
+            except Exception as e:
+                return f"Error updating record: {str(e)}"
+        else:
+            return "Record with the same robot_id and ticket_id already exists with the same condition. No update needed."
+
+    else:
+        # If no record exists, insert a new one
+        insert_query = """
+            INSERT INTO Repairs (robot_id, condition_type, repair_location, technician, part_id, ticket_id)
+            VALUES (%s, %s, %s, %s, %s, %s)
+        """
+        insert_data = (robot_id, condition, repair_location, technician, part_id, ticket_id)
+
+        try:
+            result = execute_query(insert_query, insert_data)
+            return result
+        except Exception as e:
+            return f"Error inserting new record: {str(e)}"
 
 
 
