@@ -34,7 +34,7 @@ def customer_form():
     cursor.execute("SELECT * FROM customers")
     current_customers = cursor.fetchall()
 
-    return render_template('customers', current_customers=current_customers)
+    return render_template('customers.html', current_customers=current_customers)
 
 @app.route('/submit_customer', methods=['POST'])
 def submit_customer():
@@ -58,13 +58,13 @@ def submit_customer():
 
 @app.route('/orders')
 def orders():
-    return render_template('orders')
+    return render_template('orders.html')
 
 @app.route('/purchase_page')
 def purchase_page():
     connection = mysql.connector.connect(**db_config)
     cursor = connection.cursor(dictionary=True)
-    return render_template('purchase_page')
+    return render_template('purchase_page.html')
 
 
 @app.route('/repairs')
@@ -74,7 +74,7 @@ def repairs():
 
     cursor.execute("SELECT * FROM Repairs")
     past_repairs = cursor.fetchall()
-    return render_template('repairs', past_repairs=past_repairs)
+    return render_template('repairs.html', past_repairs=past_repairs)
 
 @app.route('/submit_repair', methods=['POST'])
 def update_repair():
