@@ -27,13 +27,45 @@ def dashboard():
 
     return render_template('dashboard.html')
 
+@app.route('/customers')
+def customer_form():
+    connection = mysql.connector.connect(**db_config)
+    cursor = connection.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM customers")
+    current_customers = cursor.fetchall()
+
+    return render_template('customers.html', current_customers=current_customers)
+
+@app.route('/submit_customer', methods=['POST'])
+def submit_customer():
+    customer_id = request.form.get('customer_id')
+    customer_name = request.form.get('customer_name')
+    customer_address = request.form.get('customer_address')
+    customer_email = request.form.get('customer_email')
+    order_id = request.form.get('order_id')
+
+    query = """
+        INSERT INTO customers (customer_id, customer_name, customer_address, customer_email, order_id)
+        VALUES (%s, %s, %s, %s, %s)
+    """
+    data = (customer_id, customer_name, customer_address, customer_email, order_id)
+
+    try:
+        execute_query(query, data)
+        return f"Customer information submitted successfully: {customer_name}, {customer_address}, {customer_email}"
+    except Exception as e:
+        return f"Error submitting customer information: {str(e)}"
+
 @app.route('/orders')
 def orders():
     return render_template('orders.html')
 
 @app.route('/purchase_page')
 def purchase_page():
+    connection = mysql.connector.connect(**db_config)
+    cursor = connection.cursor(dictionary=True)
     return render_template('purchase_page.html')
+
 
 @app.route('/repairs')
 def repairs():

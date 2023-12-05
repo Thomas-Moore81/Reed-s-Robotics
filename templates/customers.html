@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <title>Customer Information</title>
+</head>
+
+<body>
+    <header>
+        <h1>Customer Information</h1>
+    </header>
+
+    <section id="customer-form">
+        <h2>Enter Customer Information</h2>
+        <form action="{{ url_for('submit_customer') }}" method="post">
+            <label for="customer_id">Customer ID:</label>
+            <input type="text" name="customer_id" id="customer_id" required>
+
+            <label for="customer_name">Customer Name:</label>
+            <input type="text" name="customer_name" id="customer_name" required>
+
+            <label for="customer_address">Customer Address:</label>
+            <input type="text" name="customer_address" id="customer_address" required>
+
+            <label for="customer_email">Customer Email:</label>
+            <input type="email" name="customer_email" id="customer_email" required>
+
+            <label for="order_id">Order ID:</label>
+            <input type="text" name="order_id" id="order_id" required>
+
+            <button type="submit">Submit Information</button>
+        </form>
+    </section>
+
+    <section id="current_customers">
+        <h2>Current Customers</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Customer ID</th>
+                    <th>Customer Name</th>
+                    <th>Customer Address</th>
+                    <th>Customer Email</th>
+                    <th>Order ID</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for customers in current_customers %}
+                <tr>
+                    <td>{{ customers.customer_id }}</td>
+                    <td>{{ customers.customer_name }}</td>
+                    <td>{{ customers.customer_address }}</td>
+                    <td>{{ customers.customer_email }}</td>
+                    <td>{{ customers.order_id }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Reed's Robotics</p>
+    </footer>
+</body>
+
+</html>
