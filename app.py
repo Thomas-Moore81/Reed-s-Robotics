@@ -56,30 +56,35 @@ def submit_customer():
     except Exception as e:
         return f"Error submitting customer information: {str(e)}"
 
-# @app.route('/delete_customer', methods=['POST'])
-# def delete_customer():
-#     customer_id = request.form.get('customer_id')
-#     customer_name = request.form.get('customer_name')
-#     customer_address = request.form.get('customer_address')
-#     customer_email = request.form.get('customer_email')
-#     order_id = request.form.get('order_id')
+@app.route('/delete_customer', methods=['POST'])
+def delete_customer():
+    customer_id = request.form.get('customer_id')
+    query = """
+    DELETE FROM customers
+    WHERE customer_id = %s
+    """
+    data = (customer_id,)
+    try:
+        execute_query(query, data)
+        print(f"Customer deleted successfully.")
+        return redirect(url_for('customer_form'))
+    except Exception as e:
+        print(f"Error deleting customer: {str(e)}")
 
-#     query = """
-#     DELETE FROM customers
-#     WHERE customer_id = %s
-#       AND customer_name = %s
-#       AND customer_address = %s
-#       AND customer_email = %s
-#       AND order_id = %s
-#     """
-#     data = (customer_id, customer_name, customer_address, customer_email, order_id)
-
-#     try:
-#         execute_query(query, data)
-#         print(f"Customer deleted successfully.")
-#         return redirect(url_for('customer_form'))
-#     except Exception as e:
-#         print(f"Error deleting customer: {str(e)}")
+@app.route('/delete_repair', methods=['POST'])
+def delete_repair():
+    ticket_id = request.form.get('ticket_id')
+    query = """
+    DELETE FROM Repairs
+    WHERE ticket_id = %s
+    """
+    data = (ticket_id,)
+    try:
+        execute_query(query, data)
+        print(f"Ticket deleted successfully.")
+        return redirect(url_for('repairs'))
+    except Exception as e:
+        print(f"Error deleting ticket: {str(e)}")
 
 @app.route('/orders')
 def orders():
@@ -174,4 +179,4 @@ def execute_query(query, data=None):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='localhost', port=5006)
+    app.run(debug=True, host='localhost', port=5007)
