@@ -88,19 +88,23 @@ def delete_repair():
 @app.route('/orders')
 def orders():
     connection = mysql.connector.connect(**db_config)
-    cursor = connection.cursor(dictionary=True)
+    cursor = connection.cursor(dictionary=False)
 
     cursor.execute("""
-    SELECT 
-    c.customer_id,
-    c.customer_name,
-    c.customer_address,
-    c.customer_email,
-    r.robot_id,
-    o.order_id
-        FROM customers c
-        LEFT JOIN orders o ON c.order_id = o.order_id
-        LEFT JOIN robots r ON o.robot_id = r.robot_id;
+        SELECT
+            c.customer_id,
+            c.customer_name,
+            c.customer_address,
+            c.customer_email,
+            o.order_id,
+            o.robot_id,
+            r.part_id
+        FROM
+            customers c
+        JOIN
+            orders o ON c.customer_id = o.customer_id
+        LEFT JOIN
+            robots r ON o.robot_id = r.robot_id;
 """)
     orders = cursor.fetchall()
     return render_template('orders.html', orders=orders)
@@ -173,27 +177,6 @@ def update_repair():
         except Exception as e:
             return f"Error inserting new record: {str(e)}"
         
-# @app.route('/view_orders')
-# def view_orders():
-#     # Retrieve orders from the database
-#     connection = mysql.connector.connect(**db_config)
-#     cursor = connection.cursor(dictionary=True)
-
-#     cursor.execute("""
-#     SELECT 
-#     c.customer_id,
-#     c.customer_name,
-#     c.customer_address,
-#     c.customer_email,
-#     r.robot_id,
-#     o.order_id
-#         FROM customers c
-#         LEFT JOIN orders o ON c.order_id = o.order_id
-#         LEFT JOIN robots r ON o.robot_id = r.robot_id;
-# """)
-#     orders = cursor.fetchall()
-#     return render_template('orders.html', orders=orders)
-
 def execute_query(query, data=None):
     db = mysql.connector.connect(**db_config)
     cursor = db.cursor()
