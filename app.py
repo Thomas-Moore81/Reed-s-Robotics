@@ -156,7 +156,38 @@ def update_repair():
             return result
         except Exception as e:
             return f"Error inserting new record: {str(e)}"
+        
+@app.route('/view_orders')
+def view_orders():
+    # Retrieve orders from the database
+    orders = retrieve_orders_from_database()
+    return render_template('orders.html', orders=orders)
 
+def retrieve_orders_from_database():
+    connection = mysql.connector.connect(**db_config)
+    cursor = connection.cursor(dictionary=True)
+
+    # Use a SQL JOIN to combine data from the 'customers' and 'Repairs' tables
+    query = """
+        SELECT 
+            c.customer_id,
+            c.customer_name,
+            c.customer_address,
+            c.customer_email,
+            r.robot_id,
+            r.condition_type,
+            r.repair_location,
+            r.technician
+        FROM customers c
+        LEFT JOIN orders o ON c.customer_id = o.customer_id
+        LEFT JOIN Repairs r ON o.robot_id = r.robot_id
+    """
+
+    cursor.execute(query)
+    orders = cursor.fetchall()
+    connection.close()
+
+    return orders
 
 
 
