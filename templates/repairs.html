@@ -64,6 +64,12 @@
                 {% endfor %}
             </tbody>
         </table>
+    <form action="{{ url_for('delete_repair') }}" method="post">
+        <label for="customer_id">Ticket ID:</label>
+        <input type="text" name="ticket_id" id="ticket_id" required>
+
+        <button type="submit">Delete Ticket</button>
+    </form>
     </section>
 
     <footer>

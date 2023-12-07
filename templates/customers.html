@@ -59,6 +59,12 @@
                 {% endfor %}
             </tbody>
         </table>
+        <form action="{{ url_for('delete_customer') }}" method="post">
+            <label for="customer_id">Customer ID:</label>
+            <input type="text" name="customer_id" id="customer_id" required>
+
+            <button type="submit">Delete Customer</button>
+        </form>
     </section>
 
     <footer>
