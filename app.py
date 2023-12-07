@@ -179,4 +179,4 @@ def execute_query(query, data=None):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='localhost', port=5007)
+    app.run(debug=True, host='localhost', port=5006)
