@@ -87,7 +87,24 @@ def delete_repair():
 
 @app.route('/orders')
 def orders():
-    return render_template('orders.html')
+    connection = mysql.connector.connect(**db_config)
+    cursor = connection.cursor(dictionary=True)
+
+    cursor.execute("""
+    SELECT 
+    c.customer_id,
+    c.customer_name,
+    c.customer_address,
+    c.customer_email,
+    r.robot_id,
+    o.order_id
+        FROM customers c
+        LEFT JOIN orders o ON c.order_id = o.order_id
+        LEFT JOIN robots r ON o.robot_id = r.robot_id;
+""")
+    orders = cursor.fetchall()
+    return render_template('orders.html', orders=orders)
+
 
 @app.route('/purchase_page')
 def purchase_page():
@@ -156,42 +173,26 @@ def update_repair():
         except Exception as e:
             return f"Error inserting new record: {str(e)}"
         
-@app.route('/view_orders')
-def view_orders():
-    # Retrieve orders from the database
-    connection = mysql.connector.connect(**db_config)
-    cursor = connection.cursor(dictionary=True)
-    cursor.execute("SELECT c.customer_id, c.customer_name, c.customer_address,c.customer_email,r.robot_id,r.condition_type,r.repair_location,r.technician FROM customers c LEFT JOIN orders o ON c.customer_id = o.customer_id LEFT JOIN Repairs r ON o.robot_id = r.robot_id")
-    orders = cursor.fetchall()
-    return render_template('orders.html', orders=orders)
+# @app.route('/view_orders')
+# def view_orders():
+#     # Retrieve orders from the database
+#     connection = mysql.connector.connect(**db_config)
+#     cursor = connection.cursor(dictionary=True)
 
-def retrieve_orders_from_database():
-    connection = mysql.connector.connect(**db_config)
-    cursor = connection.cursor(dictionary=True)
-
-    # Use a SQL JOIN to combine data from the 'customers' and 'Repairs' tables
-    query = """
-        SELECT 
-            c.customer_id,
-            c.customer_name,
-            c.customer_address,
-            c.customer_email,
-            r.robot_id,
-            r.condition_type,
-            r.repair_location,
-            r.technician
-        FROM customers c
-        LEFT JOIN orders o ON c.customer_id = o.customer_id
-        LEFT JOIN Repairs r ON o.robot_id = r.robot_id
-    """
-
-    cursor.execute(query)
-    orders = cursor.fetchall()
-    connection.close()
-
-    return orders
-
-
+#     cursor.execute("""
+#     SELECT 
+#     c.customer_id,
+#     c.customer_name,
+#     c.customer_address,
+#     c.customer_email,
+#     r.robot_id,
+#     o.order_id
+#         FROM customers c
+#         LEFT JOIN orders o ON c.order_id = o.order_id
+#         LEFT JOIN robots r ON o.robot_id = r.robot_id;
+# """)
+#     orders = cursor.fetchall()
+#     return render_template('orders.html', orders=orders)
 
 def execute_query(query, data=None):
     db = mysql.connector.connect(**db_config)
